@@ -1,0 +1,17 @@
+*********************Defining the function**************************
+
+def out_null(col):
+    if col.nunique()>2:
+        IQR=col.quantile(0.75)-col.quantile(0.25)
+        UL=col.quantile(0.75)+1.5*IQR
+        DL=col.quantile(0.25)-1.5*IQR
+        col.where(col.between(DL,UL),np.nan,inplace=True)
+
+****************Initializing the function**************************
+
+for i in cf.columns:
+    out_null(cf[i])
+    
+    
+    cf = my dataframe
+    col = column in my dataframe
